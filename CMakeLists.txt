@@ -1,0 +1,10 @@
+message("Including the following sala testing tools to the build:")
+add_subdirectory(./test_interpretation)
+    message("  test_interpretation")
+add_subdirectory(./test_builder_for_interpretation)
+    message("  test_builder_for_interpretation")
+add_subdirectory(./test_input_flow)
+    message("  test_input_flow")
+add_subdirectory(./test_builder_for_input_flow)
+    message("  test_builder_for_input_flow")
+
