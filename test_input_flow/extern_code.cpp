@@ -46,7 +46,7 @@ void ExternCode::read(std::size_t const count)
             );
     }
     for (std::size_t i = 0ULL; i != count; ++i, ++desc)
-        input_flow_->start(ptr + i, (sala::InputFlow::InputDescriptor)desc);
+        input_flow_->start(ptr + i, (sala::InputFlow::InputDescriptor)(desc + i));
 }
 
 
