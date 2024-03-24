@@ -1,12 +1,12 @@
 #include <test_input_flow/program_info.hpp>
 #include <test_input_flow/program_options.hpp>
 #include <test_input_flow/extern_code.hpp>
+#include <test_input_flow/input_flow.hpp>
 #include <test_input_flow/test_data.hpp>
 #include <sala/program.hpp>
 #include <sala/exec_state.hpp>
 #include <sala/interpreter.hpp>
 #include <sala/sanitizer.hpp>
-#include <sala/input_flow.hpp>
 #include <sala/streaming.hpp>
 #include <utility/timeprof.hpp>
 #include <iostream>
@@ -65,8 +65,8 @@ int run(int argc, char* argv[])
 
     sala::ExecState state{ &P };
     sala::Sanitizer sanitizer{ &state };
-    sala::InputFlow input_flow{ &state };
-    ExternCode externals{ &state, &D, &input_flow };
+    ExternCode externals{ &state, &D };
+    InputFlow input_flow{ &state, &D };
     sala::Interpreter interpreter{ &state, &externals, { &sanitizer, &input_flow } };
 
     while (!interpreter.done())
