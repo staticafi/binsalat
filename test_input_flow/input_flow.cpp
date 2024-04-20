@@ -33,7 +33,7 @@ InputFlow::InputFlow(sala::ExecState* const state, TestData* data)
 void InputFlow::start_input_flow(std::size_t const count)
 {
     std::size_t desc{ data_->num_bytes_read() - count };
-    sala::MemPtr ptr{ parameters().front().as<sala::MemPtr>() };
+    sala::MemPtr ptr{ parameters().front().read<sala::MemPtr>() };
     for (std::size_t i = 0ULL; i != count; ++i, ++desc)
         start(ptr + i, (sala::InputFlow::InputDescriptor)desc);
 }
@@ -41,10 +41,10 @@ void InputFlow::start_input_flow(std::size_t const count)
 
 void InputFlow::test_equal()
 {
-    std::uint32_t id{ parameters().front().as<std::uint32_t>() };
-    sala::MemPtr tst{ parameters().at(1).as<sala::MemPtr>() };
-    sala::MemPtr src{ parameters().at(2).as<sala::MemPtr>() };
-    std::uint32_t count{ parameters().at(3).as<std::uint32_t>() };
+    std::uint32_t id{ parameters().front().read<std::uint32_t>() };
+    sala::MemPtr tst{ parameters().at(1).read<sala::MemPtr>() };
+    sala::MemPtr src{ parameters().at(2).read<sala::MemPtr>() };
+    std::uint32_t count{ parameters().at(3).read<std::uint32_t>() };
     for (std::uint32_t i = 0; i != count; ++i)
         if (*read(tst + i) != *read(src + i))
         {
@@ -56,10 +56,10 @@ void InputFlow::test_equal()
 
 void InputFlow::test_comprises()
 {
-    std::uint32_t id{ parameters().front().as<std::uint32_t>() };
-    sala::MemPtr tst{ parameters().at(1).as<sala::MemPtr>() };
-    sala::MemPtr src{ parameters().at(2).as<sala::MemPtr>() };
-    std::uint32_t count{ parameters().at(3).as<std::uint32_t>() };
+    std::uint32_t id{ parameters().front().read<std::uint32_t>() };
+    sala::MemPtr tst{ parameters().at(1).read<sala::MemPtr>() };
+    sala::MemPtr src{ parameters().at(2).read<sala::MemPtr>() };
+    std::uint32_t count{ parameters().at(3).read<std::uint32_t>() };
     for (std::uint32_t i = 0; i != count; ++i)
         if (!read(tst + i)->comprises(*read(src + i)))
         {
@@ -71,10 +71,10 @@ void InputFlow::test_comprises()
 
 void InputFlow::test_not_comprises()
 {
-    std::uint32_t id{ parameters().front().as<std::uint32_t>() };
-    sala::MemPtr tst{ parameters().at(1).as<sala::MemPtr>() };
-    sala::MemPtr src{ parameters().at(2).as<sala::MemPtr>() };
-    std::uint32_t count{ parameters().at(3).as<std::uint32_t>() };
+    std::uint32_t id{ parameters().front().read<std::uint32_t>() };
+    sala::MemPtr tst{ parameters().at(1).read<sala::MemPtr>() };
+    sala::MemPtr src{ parameters().at(2).read<sala::MemPtr>() };
+    std::uint32_t count{ parameters().at(3).read<std::uint32_t>() };
     for (std::uint32_t i = 0; i != count; ++i)
         if (read(tst + i)->comprises(*read(src + i)))
         {
@@ -86,11 +86,11 @@ void InputFlow::test_not_comprises()
 
 void InputFlow::test_comprises_join()
 {
-    std::uint32_t id{ parameters().front().as<std::uint32_t>() };
-    sala::MemPtr tst{ parameters().at(1).as<sala::MemPtr>() };
-    std::uint32_t tst_count{ parameters().at(2).as<std::uint32_t>() };
-    sala::MemPtr src{ parameters().at(3).as<sala::MemPtr>() };
-    std::uint32_t src_count{ parameters().at(4).as<std::uint32_t>() };
+    std::uint32_t id{ parameters().front().read<std::uint32_t>() };
+    sala::MemPtr tst{ parameters().at(1).read<sala::MemPtr>() };
+    std::uint32_t tst_count{ parameters().at(2).read<std::uint32_t>() };
+    sala::MemPtr src{ parameters().at(3).read<sala::MemPtr>() };
+    std::uint32_t src_count{ parameters().at(4).read<std::uint32_t>() };
 
     sala::InputFlow::FlowSet src_joined_flow{};
     for (std::uint32_t i = 0; i != src_count; ++i)
@@ -107,11 +107,11 @@ void InputFlow::test_comprises_join()
 
 void InputFlow::test_not_comprises_join()
 {
-    std::uint32_t id{ parameters().front().as<std::uint32_t>() };
-    sala::MemPtr tst{ parameters().at(1).as<sala::MemPtr>() };
-    std::uint32_t tst_count{ parameters().at(2).as<std::uint32_t>() };
-    sala::MemPtr src{ parameters().at(3).as<sala::MemPtr>() };
-    std::uint32_t src_count{ parameters().at(4).as<std::uint32_t>() };
+    std::uint32_t id{ parameters().front().read<std::uint32_t>() };
+    sala::MemPtr tst{ parameters().at(1).read<sala::MemPtr>() };
+    std::uint32_t tst_count{ parameters().at(2).read<std::uint32_t>() };
+    sala::MemPtr src{ parameters().at(3).read<sala::MemPtr>() };
+    std::uint32_t src_count{ parameters().at(4).read<std::uint32_t>() };
 
     sala::InputFlow::FlowSet src_joined_flow{};
     for (std::uint32_t i = 0; i != src_count; ++i)
@@ -128,9 +128,9 @@ void InputFlow::test_not_comprises_join()
 
 void InputFlow::test_none()
 {
-    std::uint32_t id{ parameters().front().as<std::uint32_t>() };
-    sala::MemPtr tst{ parameters().at(1).as<sala::MemPtr>() };
-    std::uint32_t count{ parameters().at(2).as<std::uint32_t>() };
+    std::uint32_t id{ parameters().front().read<std::uint32_t>() };
+    sala::MemPtr tst{ parameters().at(1).read<sala::MemPtr>() };
+    std::uint32_t count{ parameters().at(2).read<std::uint32_t>() };
     for (std::uint32_t i = 0; i != count; ++i)
         if (!read(tst + i)->empty())
         {

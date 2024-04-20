@@ -25,7 +25,7 @@ ExternCode::ExternCode(sala::ExecState* const state, TestData* data)
 
 void ExternCode::read(std::size_t const count)
 {
-    sala::MemPtr ptr{ parameters().front().as<sala::MemPtr>() };
+    sala::MemPtr ptr{ parameters().front().read<sala::MemPtr>() };
     if (!data_->on_input(ptr, count))
     {
         state().set_stage(sala::ExecState::Stage::FINISHED);

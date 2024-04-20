@@ -44,9 +44,9 @@ int run(int argc, char* argv[])
         std::ifstream istr(input_json_file.c_str(), std::ios_base::binary);
         istr >> P;
 
-        if (P.num_cpu_bits() != 64U)
+        if (P.num_cpu_bits() != 64U && P.num_cpu_bits() != 32U)
         {
-            std::cout << "Only 64-bit platform is supported. The program is for " << P.num_cpu_bits() << "-bit platform." << std::endl;
+            std::cout << "Only 64-bit and 32-bit platforms are supported. The program is for " << P.num_cpu_bits() << "-bit platform." << std::endl;
             return -5;
         }
         if (P.system().find("linux") == std::string::npos)

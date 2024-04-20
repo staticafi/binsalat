@@ -11,7 +11,7 @@ ExternCode::ExternCode(sala::ExecState* const state, TestData* data)
     , data_{ data }
 {
     register_code("__sala_testing_loc_hit", [this]() {
-        if (!this->data_->on_hit(parameters().back().as<std::uint32_t>()))
+        if (!this->data_->on_hit(parameters().back().read<std::uint32_t>()))
         {
             this->state().set_stage(sala::ExecState::Stage::FINISHED);
             this->state().set_termination(
@@ -49,8 +49,8 @@ ExternCode::ExternCode(sala::ExecState* const state, TestData* data)
 void ExternCode::read(std::size_t const count)
 {
     if (!data_->on_input(
-            parameters().back().as<std::uint32_t>(),
-            parameters().front().as<sala::MemPtr>(),
+            parameters().back().read<std::uint32_t>(),
+            parameters().front().read<sala::MemPtr>(),
             count))
     {
         state().set_stage(sala::ExecState::Stage::FINISHED);
@@ -66,7 +66,7 @@ void ExternCode::read(std::size_t const count)
 void ExternCode::write(std::size_t const count)
 {
     if (!data_->on_output(
-            parameters().front().as<std::uint32_t>(),
+            parameters().front().read<std::uint32_t>(),
             parameters().back().start(),
             count))
     {
