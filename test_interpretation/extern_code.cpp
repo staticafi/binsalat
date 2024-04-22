@@ -17,9 +17,30 @@ ExternCode::ExternCode(sala::ExecState* const state, TestData* data)
             this->state().set_termination(
                 sala::ExecState::Termination::ERROR,
                 "test_interpreter[extern_code]",
-                "Unexpected hit w.r.t. test data at line " + std::to_string(data_->current_line())
+                "Unexpected hit w.r.t. test data at line " + std::to_string(data_->current_line()),
+                this->get_call_instruction()
                 );
         }
+    });
+    register_code("__sala_testing_main_return", [this]() {
+        this->state().set_stage(sala::ExecState::Stage::FINISHED);
+        this->state().set_exit_code(this->parameters().back().read<std::uint32_t>());
+        this->state().set_termination(
+            sala::ExecState::Termination::NORMAL,
+            "test_interpreter[extern_code]",
+            "Returning from main.",
+            this->get_call_instruction()
+            );
+    });
+    register_code("__sala_testing_crash", [this]() {
+        this->state().set_stage(sala::ExecState::Stage::FINISHED);
+        this->state().set_exit_code(parameters().back().read<std::uint32_t>());
+        this->state().set_termination(
+            sala::ExecState::Termination::CRASH,
+            "test_interpreter[extern_code]",
+            "Crashing the program.",
+            this->get_call_instruction()
+            );
     });
     register_code("__sala_testing_read_bool", [this]() { this->read(sizeof(bool)); });
     register_code("__sala_testing_read_s8", [this]() { this->read(sizeof(std::int8_t)); });
@@ -57,7 +78,8 @@ void ExternCode::read(std::size_t const count)
         state().set_termination(
             sala::ExecState::Termination::ERROR,
             "test_interpreter[extern_code]",
-            "Unexpected read w.r.t. test data at line " + std::to_string(data_->current_line())
+            "Unexpected read w.r.t. test data at line " + std::to_string(data_->current_line()),
+            this->get_call_instruction()
             );
     }
 }
@@ -74,7 +96,8 @@ void ExternCode::write(std::size_t const count)
         state().set_termination(
             sala::ExecState::Termination::ERROR,
             "test_interpreter[extern_code]",
-            "Unexpected write w.r.t. test data at line " + std::to_string(data_->current_line())
+            "Unexpected write w.r.t. test data at line " + std::to_string(data_->current_line()),
+            this->get_call_instruction()
             );
     }
 }

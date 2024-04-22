@@ -51,16 +51,15 @@ bool TestData::on_output(std::uint32_t const id, std::uint8_t const* const ptr, 
 }
 
 
-bool TestData::on_termination(sala::ExecState::Termination const termination, int const exit_code)
+bool TestData::on_termination(std::uint32_t const id, sala::ExecState::Termination const termination, int const exit_code)
 {
-    return termination_ == termination && exit_code_ == exit_code;
+    return terminator_.id == id && terminator_.termination == termination && terminator_.exit_code == exit_code;
 }
 
 
-void TestData::set_termination(sala::ExecState::Termination const termination, int const exit_code)
+void TestData::set_termination(std::uint32_t const id, sala::ExecState::Termination const termination, int const exit_code)
 {
-    termination_ = termination;
-    exit_code_ = exit_code;
+    terminator_ = { id, termination, exit_code };
 }
 
 
@@ -118,9 +117,9 @@ std::istream& operator>>(std::istream& istr, TestData& data)
         {
             case 'i': data.push_back_line({ true, id, bytes }); break;
             case 'o': data.push_back_line({ false, id, bytes }); break;
-            case 'n': data.set_termination(sala::ExecState::Termination::NORMAL, local::bytes_to_int(bytes)); break;
-            case 'e': data.set_termination(sala::ExecState::Termination::ERROR, local::bytes_to_int(bytes)); break;
-            case 'c': data.set_termination(sala::ExecState::Termination::CRASH, local::bytes_to_int(bytes)); break;
+            case 'n': data.set_termination(id, sala::ExecState::Termination::NORMAL, local::bytes_to_int(bytes)); break;
+            case 'e': data.set_termination(id, sala::ExecState::Termination::ERROR, local::bytes_to_int(bytes)); break;
+            case 'c': data.set_termination(id, sala::ExecState::Termination::CRASH, local::bytes_to_int(bytes)); break;
             default: UNREACHABLE(); break;
         }
     }

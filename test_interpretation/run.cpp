@@ -72,5 +72,6 @@ int run(int argc, char* argv[])
 
     if (!D.done())
         return 1 + (int)D.current_line();
-    return D.on_termination(state.termination(), state.exit_code()) ? 0 : 1 + (int)D.lines().size();
+    return D.on_termination(state.termination_instruction()->source_back_mapping().line, state.termination(), state.exit_code()) ?
+                0 : 1 + (int)D.lines().size();
 }
