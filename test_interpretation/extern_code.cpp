@@ -4,6 +4,7 @@
 #include <utility/invariants.hpp>
 #include <utility/development.hpp>
 #include <string>
+#include <cstring>
 
 
 ExternCode::ExternCode(sala::ExecState* const state, TestData* data)
@@ -23,8 +24,7 @@ ExternCode::ExternCode(sala::ExecState* const state, TestData* data)
         }
     });
     register_code("__sala_testing_main_return", [this]() {
-        this->state().set_stage(sala::ExecState::Stage::FINISHED);
-        this->state().set_exit_code(this->parameters().back().read<std::uint32_t>());
+        std::memcpy(parameters().front().read<sala::MemPtr>(), parameters().back().start(), parameters().back().count());
         this->state().set_termination(
             sala::ExecState::Termination::NORMAL,
             "test_interpreter[extern_code]",
