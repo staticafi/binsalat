@@ -7,7 +7,7 @@
 
 struct ExternCode : public sala::ExternCodeCStd
 {
-    ExternCode(sala::ExecState* state, TestData* data);
+    ExternCode(sala::ExecState* state, sala::Sanitizer* const sanitizer, TestData* data);
 
     TestData& data() { return *data_; }
 

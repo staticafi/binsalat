@@ -7,8 +7,8 @@
 #include <cstring>
 
 
-ExternCode::ExternCode(sala::ExecState* const state, TestData* data)
-    : sala::ExternCodeCStd{ state }
+ExternCode::ExternCode(sala::ExecState* const state, sala::Sanitizer* const sanitizer, TestData* data)
+    : sala::ExternCodeCStd{ state, sanitizer }
     , data_{ data }
 {
     register_code("__sala_testing_loc_hit", [this]() {

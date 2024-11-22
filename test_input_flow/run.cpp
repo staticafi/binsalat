@@ -65,7 +65,7 @@ int run(int argc, char* argv[])
 
     sala::ExecState state{ &P };
     sala::Sanitizer sanitizer{ &state };
-    ExternCode externals{ &state, &D };
+    ExternCode externals{ &state, &sanitizer, &D };
     InputFlow input_flow{ &state, &D };
     sala::Interpreter interpreter{ &state, &externals, { &sanitizer, &input_flow } };
 

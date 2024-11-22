@@ -5,8 +5,8 @@
 #include <utility/development.hpp>
 
 
-ExternCode::ExternCode(sala::ExecState* const state, TestData* data)
-    : sala::ExternCodeCStd{ state }
+ExternCode::ExternCode(sala::ExecState* const state, sala::Sanitizer* const sanitizer, TestData* data)
+    : sala::ExternCodeCStd{ state, sanitizer }
     , data_{ data }
 {
     register_code("__sala_testing_start_flow_with_bool", [this]() { this->read(sizeof(bool)); });

@@ -63,8 +63,8 @@ int run(int argc, char* argv[])
     }
 
     sala::ExecState state{ &P };
-    ExternCode externals{ &state, &D };
     sala::Sanitizer sanitizer{ &state };
+    ExternCode externals{ &state, &sanitizer, &D };
     sala::Interpreter interpreter{ &state, &externals, { &sanitizer } };
 
     while (!interpreter.done())
