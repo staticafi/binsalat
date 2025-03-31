@@ -10,9 +10,9 @@ struct InputFlow : public sala::InputFlow
     InputFlow(sala::ExecState* state, TestData* data);
 
 private:
-    void register_external_functions();
-
-    void start_input_flow(std::size_t const count);
+    void on_stack_initialized() override;
+    void start_input_flow(sala::MemPtr ptr, std::size_t count);
+    void start_input_flow(std::size_t const count) { start_input_flow(parameters().front().read<sala::MemPtr>(), count);}
     void test_equal();
     void test_comprises();
     void test_not_comprises();

@@ -1,6 +1,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#define TAINT_ARGS(...) \
+    static char* __local_argv__[] = { __VA_ARGS__ }; \
+    argc = sizeof(__local_argv__)/sizeof(__local_argv__[0]); \
+    argv = __local_argv__; \
+    __sala_testing_write_args(argc, __VA_ARGS__)
+
 #define __VERIFIER_nondet_char() __sala_testing_start_flow_with_s8()
 #define __VERIFIER_nondet_short() __sala_testing_start_flow_with_s16()
 #define __VERIFIER_nondet_int() __sala_testing_start_flow_with_s32()
@@ -14,8 +20,8 @@
 #define __VERIFIER_nondet_float() __sala_testing_start_flow_with_f32()
 #define __VERIFIER_nondet_double() __sala_testing_start_flow_with_f64()
 
-#define FLOW_EQUAL_EX(T, S, N) __sala_testing_flow_comprises(__LINE__, (uint8_t const*)(T), (uint8_t const*)&(S), N)
-#define FLOW_COMPRISES_EX(T, S, N) __sala_testing_flow_comprises(__LINE__, (uint8_t const*)(T), (uint8_t const*)&(S), N)
+#define FLOW_EQUAL_EX(T, S, N) __sala_testing_flow_comprises(__LINE__, (uint8_t const*)(T), (uint8_t const*)(S), N)
+#define FLOW_COMPRISES_EX(T, S, N) __sala_testing_flow_comprises(__LINE__, (uint8_t const*)(T), (uint8_t const*)(S), N)
 #define FLOW_NOT_COMPRISES_EX(T, S, N) __sala_testing_flow_not_comprises(__LINE__, (uint8_t const*)(T), (uint8_t const*)(S), N)
 #define FLOW_COMPRISES_JOIN_EX(T, M, S, N) __sala_testing_flow_comprises_join(__LINE__, (uint8_t const*)(T), M, (uint8_t const*)(S), N)
 #define FLOW_NOT_COMPRISES_JOIN_EX(T, M, S, N) __sala_testing_flow_not_comprises_join(__LINE__, (uint8_t const*)(T), M, (uint8_t const*)(S), N)
@@ -46,3 +52,5 @@ extern void __sala_testing_flow_not_comprises(int32_t id, uint8_t const* tst, ui
 extern void __sala_testing_flow_comprises_join(int32_t id, uint8_t const* tst, uint32_t tst_count, uint8_t const* src, uint32_t src_count);
 extern void __sala_testing_flow_not_comprises_join(int32_t id, uint8_t const* tst, uint32_t tst_count, uint8_t const* src, uint32_t src_count);
 extern void __sala_testing_flow_none(int32_t id, uint8_t const* tst, uint32_t count);
+
+extern void __sala_testing_write_args(int32_t argc, ...);

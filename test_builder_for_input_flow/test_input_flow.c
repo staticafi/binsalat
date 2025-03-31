@@ -1,11 +1,18 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdarg.h>
+
+
+static FILE* open_file()
+{
+    return fopen("./test_builder_for_input_flow.txt", "a");
+}
 
 
 static void save_test_line(uint8_t const* const ptr, uint32_t const n)
 {
-    FILE* const f = fopen("./test_builder_for_input_flow.txt", "a");
+    FILE* const f = open_file();
     for (uint32_t i = 0; i != n; ++i)
         fprintf(f, "%02x", ptr[i]);
     fputc('\n', f);
@@ -134,4 +141,21 @@ void __sala_testing_flow_not_comprises_join(int32_t id, uint8_t const* tst, uint
 void __sala_testing_flow_none(int32_t id, uint8_t const* tst, uint32_t count)
 {
     // Nothing to do.
+}
+
+
+void __sala_testing_write_args(int32_t argc, ...)
+{
+    if (argc < 1)
+        return;
+    FILE* const f = open_file();
+    va_list args;
+    va_start(args, argc);
+    for (int i = 0; i < argc; ++i)
+    {
+        fputs("arg:", f);
+        fputs(va_arg(args, char*), f);
+        fputc('\n', f);
+    }
+    fclose(f);
 }

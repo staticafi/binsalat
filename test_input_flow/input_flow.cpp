@@ -30,10 +30,31 @@ InputFlow::InputFlow(sala::ExecState* const state, TestData* data)
 }
 
 
-void InputFlow::start_input_flow(std::size_t const count)
+void InputFlow::on_stack_initialized()
+{
+    if (state().stage() == sala::ExecState::Stage::EXECUTING && !state().argv_c_strings().empty())
+    {
+        sala::MemBlock const* argc;
+        {
+            auto const& params{ state().stack_top().parameters() };
+            if (params.size() == 2ULL)
+                argc = &params.front();
+            else
+            {
+                ASSUMPTION(params.size() == 3ULL);
+                argc = &params.at(1ULL);
+            }
+        }
+        start_input_flow(argc->start(), argc->count());
+        for (sala::MemBlock const& str : state().argv_c_strings())
+            start_input_flow(str.start(), str.count());
+    }
+}
+
+
+void InputFlow::start_input_flow(sala::MemPtr const ptr, std::size_t const count)
 {
     std::size_t desc{ data_->num_bytes_read() - count };
-    sala::MemPtr ptr{ parameters().front().read<sala::MemPtr>() };
     for (std::size_t i = 0ULL; i != count; ++i, ++desc)
         start(ptr + i, (sala::InputFlow::InputDescriptor)desc);
 }
