@@ -62,7 +62,7 @@ int run(int argc, char* argv[])
         istr >> D;
     }
 
-    sala::ExecState state{ &P };
+    sala::ExecState state{ &P, D.argc(), D.argv() };
     sala::Sanitizer sanitizer{ &state };
     ExternCode externals{ &state, &sanitizer, &D };
     sala::Interpreter interpreter{ &state, &externals, { &sanitizer } };

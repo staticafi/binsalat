@@ -4,6 +4,7 @@
 #   include <sala/exec_state.hpp>
 #   include <iosfwd>
 #   include <vector>
+#   include <string>
 #   include <cstdint>
 
 
@@ -23,6 +24,9 @@ struct TestData
         int exit_code{ 0 };
     };
 
+    std::int32_t argc() const { return (std::int32_t)argv_.size(); }
+    char** argv() const { return argv_.empty() ? nullptr : (char**)argv_.data(); }
+
     bool done() const { return current_line_ == lines_.size(); }
     std::vector<Line> const& lines() const { return lines_; }
     std::size_t current_line() const { return current_line_; }
@@ -32,10 +36,13 @@ struct TestData
     bool on_hit(std::uint32_t id) { return on_output(id, nullptr, 0ULL); }
     bool on_termination(std::uint32_t id, sala::ExecState::Termination termination, int exit_code);
 
+    void set_args(std::vector<std::string> const& args);
     void push_back_line(Line const& line) { lines_.push_back(line); }
     void set_termination(std::uint32_t id, sala::ExecState::Termination termination, int exit_code);
 
 private:
+    std::vector<char*> argv_{};
+    std::vector<std::string> argv_strings{};
     std::vector<Line> lines_{};
     std::size_t current_line_{ 0ULL };
     Terminator terminator_{};

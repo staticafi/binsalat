@@ -57,6 +57,14 @@ bool TestData::on_termination(std::uint32_t const id, sala::ExecState::Terminati
 }
 
 
+void TestData::set_args(std::vector<std::string> const& args)
+{
+    argv_strings = args;
+    for (std::string& s : argv_strings)
+        argv_.push_back(s.data());
+}
+
+
 void TestData::set_termination(std::uint32_t const id, sala::ExecState::Termination const termination, int const exit_code)
 {
     terminator_ = { id, termination, exit_code };
@@ -65,11 +73,18 @@ void TestData::set_termination(std::uint32_t const id, sala::ExecState::Terminat
 
 std::istream& operator>>(std::istream& istr, TestData& data)
 {
+    std::vector<std::string> args;
     std::string line;
     while (std::getline(istr, line))
     {
         if (line.empty())
-            continue;;
+            continue;
+
+        if (line.starts_with("arg:"))
+        {
+            args.push_back({ line.begin() + 4UL, line.end() });
+            continue;
+        }
 
         std::size_t idx{ 0ULL };
 
@@ -123,6 +138,9 @@ std::istream& operator>>(std::istream& istr, TestData& data)
             default: UNREACHABLE(); break;
         }
     }
+
+    if (!args.empty())
+        data.set_args(args);
 
     return istr;
 }

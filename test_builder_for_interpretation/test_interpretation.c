@@ -1,11 +1,18 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdarg.h>
+
+
+static FILE* open_file()
+{
+    return fopen("./test_builder_for_interpretation.txt", "a");
+}
 
 
 static void save_test_line(char const type, int32_t const id, uint8_t const* const ptr, uint32_t const n)
 {
-    FILE* const f = fopen("./test_builder_for_interpretation.txt", "a");
+    FILE* const f = open_file();
     fputc(type, f);
     fprintf(f, " %u ", id);
     for (uint32_t i = 0; i != n; ++i)
@@ -178,4 +185,21 @@ void __sala_testing_write_f32(int32_t id, float value)
 void __sala_testing_write_f64(int32_t id, double value)
 {
     save_test_line('o', id, (uint8_t const*)&value, sizeof(value));
+}
+
+
+void __sala_testing_write_args(int32_t argc, ...)
+{
+    if (argc < 1)
+        return;
+    FILE* const f = open_file();
+    va_list args;
+    va_start(args, argc);
+    for (int i = 0; i < argc; ++i)
+    {
+        fputs("arg:", f);
+        fputs(va_arg(args, char*), f);
+        fputc('\n', f);
+    }
+    fclose(f);
 }

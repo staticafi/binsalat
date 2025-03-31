@@ -4,6 +4,11 @@
 
 #define READ(T) __sala_testing_read_##T(__LINE__)
 #define WRITE(T,V) __sala_testing_write_##T(__LINE__, V)
+#define WRITE_ARGS(...) \
+    static char* __local_argv__[] = { __VA_ARGS__ }; \
+    argc = sizeof(__local_argv__)/sizeof(__local_argv__[0]); \
+    argv = __local_argv__; \
+    __sala_testing_write_args(argc, __VA_ARGS__)
 #define HIT() __sala_testing_loc_hit(__LINE__)
 #define RET(V) return __sala_testing_terminate(__LINE__, 'n', (int32_t)(V))
 
@@ -53,3 +58,5 @@ extern void __sala_testing_write_u32(int32_t id, uint32_t value);
 extern void __sala_testing_write_u64(int32_t id, uint64_t value);
 extern void __sala_testing_write_f32(int32_t id, float value);
 extern void __sala_testing_write_f64(int32_t id, double value);
+
+extern void __sala_testing_write_args(int32_t argc, ...);
