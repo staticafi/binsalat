@@ -18,6 +18,8 @@ target_link_libraries(optimizer_tests_common INTERFACE
     utility
 )
 
+enable_testing()
+
 add_subdirectory(translation)
 add_subdirectory(utils)
 add_subdirectory(programIR)
