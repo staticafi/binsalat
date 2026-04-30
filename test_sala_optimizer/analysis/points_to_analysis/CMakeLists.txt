@@ -14,7 +14,7 @@ target_compile_features(${THIS_TARGET_NAME} PRIVATE cxx_std_20)
 
 if(DEFINED BINSALAT_INSTALL_DIR)
   set(POINTS_TO_PROGRAMS_RUNTIME_DIR
-    "${CMAKE_INSTALL_PREFIX}/${BINSALAT_INSTALL_DIR}/otpimizer/points_to_programs"
+    "${CMAKE_INSTALL_PREFIX}/${BINSALAT_INSTALL_DIR}/optimizer/points_to_programs"
   )
 else()
   set(POINTS_TO_PROGRAMS_RUNTIME_DIR
