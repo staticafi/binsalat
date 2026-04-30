@@ -7,4 +7,6 @@ add_subdirectory(./test_input_flow)
     message("  test_input_flow")
 add_subdirectory(./test_builder_for_input_flow)
     message("  test_builder_for_input_flow")
+add_subdirectory(./test_sala_optimizer)
+    message("  test_sala_optimzier")
 
