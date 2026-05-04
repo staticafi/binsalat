@@ -5,6 +5,9 @@ set(SOURCE_FILES
   ${CMAKE_CURRENT_LIST_DIR}/sparse_map_test.cpp
   ${CMAKE_CURRENT_LIST_DIR}/sparse_set_test.cpp
   ${CMAKE_CURRENT_LIST_DIR}/type_list_compilation_test.cpp
+
+  # view subfolder
+  ${CMAKE_CURRENT_LIST_DIR}/view/flattened_cfg_view_test.cpp
 )
 
 add_executable(${THIS_TARGET_NAME} ${SOURCE_FILES})
