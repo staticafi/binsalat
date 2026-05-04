@@ -575,10 +575,10 @@ TEST_CASE("SparseMap const iteration preserves sorted order", "[SparseMap]")
     map.insert({2, 20});
     map.insert({3, 30});
 
-    const auto& constMap = map;
+    const auto& const_map = map;
 
     std::vector<int> keys;
-    for (const auto& [key, _] : constMap)
+    for (const auto& [key, _] : const_map)
     {
         keys.push_back(key);
     }
