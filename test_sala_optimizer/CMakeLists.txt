@@ -18,6 +18,38 @@ target_link_libraries(optimizer_tests_common INTERFACE
     utility
 )
 
+# Install Catch2 runtime artifacts
+install(IMPORTED_RUNTIME_ARTIFACTS
+    Catch2::Catch2
+    Catch2::Catch2WithMain
+    DESTINATION .
+)
+
+if (VCPKG_INSTALLED_DIR)
+    if (WIN32)
+        set(VCPKG_RUNTIME_DIR "${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/$<IF:$<CONFIG:Debug>,debug/bin,bin>")
+
+        set(CATCH2_RUNTIME_DEPENDENCIES
+            "$<IF:$<CONFIG:Debug>,Catch2d.dll,Catch2.dll>"
+            "$<IF:$<CONFIG:Debug>,Catch2Maind.dll,Catch2Main.dll>"
+        )
+    elseif (UNIX)
+        set(VCPKG_RUNTIME_DIR "${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/$<IF:$<CONFIG:Debug>,debug/lib,lib>")
+
+        set(CATCH2_RUNTIME_DEPENDENCIES
+            "$<IF:$<CONFIG:Debug>,libCatch2d.so,libCatch2.so>"
+            "$<IF:$<CONFIG:Debug>,libCatch2Maind.so,libCatch2Main.so>"
+        )
+    endif ()
+
+    foreach (RUNTIME_FILE ${CATCH2_RUNTIME_DEPENDENCIES})
+        install(FILES "${VCPKG_RUNTIME_DIR}/${RUNTIME_FILE}"
+            DESTINATION .
+            OPTIONAL
+        )
+    endforeach ()
+endif ()
+
 enable_testing()
 
 add_subdirectory(translation)
