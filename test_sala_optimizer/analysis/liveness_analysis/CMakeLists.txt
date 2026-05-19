@@ -25,7 +25,7 @@ catch_discover_tests(${THIS_TARGET_NAME}
 add_custom_command(TARGET ${THIS_TARGET_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory
   "${LIVENESS_PROGRAMS_SRC_DIR}"
-          "$<TARGET_FILE_DIR:${THIS_TARGET_NAME}>/liveness_to_golden"
+          "$<TARGET_FILE_DIR:${THIS_TARGET_NAME}>/liveness_golden"
   COMMENT "Copying liveness golden files next to ${THIS_TARGET_NAME}"
   VERBATIM
 )
