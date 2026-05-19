@@ -1,6 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include <filesystem>
+#include <source_location>
 #include <string>
 #include <vector>
 
@@ -19,8 +20,8 @@ namespace fs = std::filesystem;
 
 TEST_CASE("liveness golden files match expected debug dumps", "[analysis][liveness][golden]")
 {
-    const fs::path programs_dir = fs::absolute(LIVENESS_ANALYSIS_PROGRAMS_DIR);
-
+    const fs::path programs_dir =
+            fs::path{std::source_location::current().file_name()}.parent_path() / "liveness_golden";
     const auto cases = optimizer::tests::collect_cases_from_directory(programs_dir, ".json");
 
     REQUIRE_FALSE(cases.empty());

@@ -1,6 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include <filesystem>
+#include <source_location>
 #include <string>
 #include <vector>
 
@@ -20,8 +21,9 @@ namespace fs = std::filesystem;
 TEST_CASE("available-copy analysis golden files match expected debug dumps",
           "[analysis][aca][golden][available copy]")
 {
-    const fs::path programs_dir = fs::absolute(AVAILABLE_COPY_ANALYSIS_PROGRAMS_DIR);
-
+    const fs::path programs_dir =
+            fs::path{std::source_location::current().file_name()}.parent_path() /
+            "available_copy_golden";
     const auto cases = optimizer::tests::collect_cases_from_directory(programs_dir, ".json");
 
     REQUIRE_FALSE(cases.empty());
