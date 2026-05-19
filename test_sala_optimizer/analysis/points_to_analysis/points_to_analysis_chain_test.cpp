@@ -8,6 +8,7 @@
 #include "../analysis_test_harness.hpp"
 #include "../analysis_test_registry.hpp"
 #include "../utils.hpp"
+#include <test_sala_optimizer/executable_path.hpp>
 
 #include <optimizer/passes/analysis/global_points_to_analysis.hpp>
 #include <optimizer/passes/analysis/local_points_to_analysis.hpp>
@@ -21,8 +22,8 @@ namespace fs = std::filesystem;
 
 TEST_CASE("points-to golden files match expected debug dumps", "[analysis][points_to][golden]")
 {
-    const fs::path programs_dir =
-            fs::path{std::source_location::current().file_name()}.parent_path() / "programs";
+    const fs::path programs_dir = optimizer::tests::executable_dir() / "points_to_golden";
+
     const auto cases = optimizer::tests::collect_cases_from_directory(programs_dir, ".json");
 
     REQUIRE_FALSE(cases.empty());
@@ -49,7 +50,7 @@ TEST_CASE("points-to golden files match expected debug dumps", "[analysis][point
 
             REQUIRE_NOTHROW(
                     harness.run_and_compare(".points_to_debug", ".points_to_debug.expected"));
-            harness.cleanup_generated_files();
+            // harness.cleanup_generated_files();
         }
     }
 }
