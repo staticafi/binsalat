@@ -5,27 +5,12 @@ set(SOURCE_FILES
 )
 
 set(AVAILABLE_COPY_PROGRAMS_SRC_DIR
-  ${CMAKE_CURRENT_SOURCE_DIR}/programs
+  ${CMAKE_CURRENT_SOURCE_DIR}/available_copy_golden
 )
 
 add_executable(${THIS_TARGET_NAME} ${SOURCE_FILES})
 
 target_compile_features(${THIS_TARGET_NAME} PRIVATE cxx_std_20)
-
-if(DEFINED BINSALAT_INSTALL_DIR)
-  set(AVAILABLE_COPY_PROGRAMS_RUNTIME_DIR
-    "${CMAKE_INSTALL_PREFIX}/${BINSALAT_INSTALL_DIR}/optimizer/available_copy_programs"
-  )
-else()
-  set(AVAILABLE_COPY_PROGRAMS_RUNTIME_DIR
-    "${AVAILABLE_COPY_PROGRAMS_SRC_DIR}"
-  )
-endif()
-
-target_compile_definitions(${THIS_TARGET_NAME}
-  PRIVATE
-    AVAILABLE_COPY_ANALYSIS_PROGRAMS_DIR="${AVAILABLE_COPY_PROGRAMS_RUNTIME_DIR}"
-)
 
 target_link_libraries(${THIS_TARGET_NAME}
   PRIVATE
@@ -43,6 +28,6 @@ if(DEFINED BINSALAT_INSTALL_DIR)
   )
 
   install(DIRECTORY "${AVAILABLE_COPY_PROGRAMS_SRC_DIR}/"
-    DESTINATION "${BINSALAT_INSTALL_DIR}/optimizer/available_copy_programs"
+    DESTINATION "${BINSALAT_INSTALL_DIR}/optimizer/available_copy_golden"
   )
 endif()
