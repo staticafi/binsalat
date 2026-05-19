@@ -1,7 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include <filesystem>
-#include <source_location>
 #include <string>
 #include <vector>
 
@@ -50,7 +49,7 @@ TEST_CASE("points-to golden files match expected debug dumps", "[analysis][point
 
             REQUIRE_NOTHROW(
                     harness.run_and_compare(".points_to_debug", ".points_to_debug.expected"));
-            // harness.cleanup_generated_files();
+            harness.cleanup_generated_files();
         }
     }
 }
