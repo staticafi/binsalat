@@ -22,6 +22,14 @@ catch_discover_tests(${THIS_TARGET_NAME}
   ADD_TAGS_AS_LABELS
 )
 
+add_custom_command(TARGET ${THIS_TARGET_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+  "${AVAILABLE_COPY_PROGRAMS_SRC_DIR}"
+          "$<TARGET_FILE_DIR:${THIS_TARGET_NAME}>/available_copy_golden"
+  COMMENT "Copying available copy golden files next to ${THIS_TARGET_NAME}"
+  VERBATIM
+)
+
 if(DEFINED BINSALAT_INSTALL_DIR)
   install(TARGETS ${THIS_TARGET_NAME}
     RUNTIME DESTINATION "${BINSALAT_INSTALL_DIR}/optimizer"
