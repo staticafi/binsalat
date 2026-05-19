@@ -10,10 +10,10 @@ target_include_directories(optimizer_tests_common INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/../../salac/optimizer/include
 )
 target_link_libraries(optimizer_tests_common INTERFACE
-    ${BOOST_LIST_OF_LIBRARIES_TO_LINK_WITH}
     optimizer
     sala
     utility
+    ${BOOST_LIST_OF_LIBRARIES_TO_LINK_WITH}
 )
 
 enable_testing()
