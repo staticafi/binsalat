@@ -20,49 +20,49 @@ __init__ __sala_static_initializer__:
     __entry__
     0:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       ADDRESS 1 2
        >>AFTER MAY: 1 = { 2 }; <<
-       >>AFTER MUST: 1 -> 2; <<
+       >>AFTER UNIQUE: 1 -> 2; <<
        >>BEFORE MAY: 1 = { 2 }; <<
-       >>BEFORE MUST: 1 -> 2; <<
+       >>BEFORE UNIQUE: 1 -> 2; <<
       JUMP
        >>AFTER MAY: 1 = { 2 }; <<
-       >>AFTER MUST: 1 -> 2; <<
+       >>AFTER UNIQUE: 1 -> 2; <<
     }
     |_succ__: 1
     |_pred__:
 
     1:
      >>BB-IN MAY: 1 = { 2 }; <<
-     >>BB-IN MUST: 1 -> 2; <<
+     >>BB-IN UNIQUE: 1 -> 2; <<
     {
        >>BEFORE MAY: 1 = { 2 }; <<
-       >>BEFORE MUST: 1 -> 2; <<
+       >>BEFORE UNIQUE: 1 -> 2; <<
       COPY 3 0
        >>AFTER MAY: 1 = { 2 }; <<
-       >>AFTER MUST: 1 -> 2; <<
+       >>AFTER UNIQUE: 1 -> 2; <<
        >>BEFORE MAY: 1 = { 2 }; <<
-       >>BEFORE MUST: 1 -> 2; <<
+       >>BEFORE UNIQUE: 1 -> 2; <<
       BRANCH 3
        >>AFTER MAY: 1 = { 2 }; <<
-       >>AFTER MUST: 1 -> 2; <<
+       >>AFTER UNIQUE: 1 -> 2; <<
     }
     |_succ__: 1 2
     |_pred__: 1 0
 
     2:
      >>BB-IN MAY: 1 = { 2 }; <<
-     >>BB-IN MUST: 1 -> 2; <<
+     >>BB-IN UNIQUE: 1 -> 2; <<
     {
        >>BEFORE MAY: 1 = { 2 }; <<
-       >>BEFORE MUST: 1 -> 2; <<
+       >>BEFORE UNIQUE: 1 -> 2; <<
       RET
        >>AFTER MAY: 1 = { 2 }; <<
-       >>AFTER MUST: 1 -> 2; <<
+       >>AFTER UNIQUE: 1 -> 2; <<
     }
     |_succ__:
     |_pred__: 1
@@ -81,13 +81,13 @@ __entry__ main:
     __entry__
     0:
      >>BB-IN MAY: 1 = { 2 }; <<
-     >>BB-IN MUST: 1 -> 2; <<
+     >>BB-IN UNIQUE: 1 -> 2; <<
     {
        >>BEFORE MAY: 1 = { 2 }; <<
-       >>BEFORE MUST: 1 -> 2; <<
+       >>BEFORE UNIQUE: 1 -> 2; <<
       RET
        >>AFTER MAY: 1 = { 2 }; <<
-       >>AFTER MUST: 1 -> 2; <<
+       >>AFTER UNIQUE: 1 -> 2; <<
     }
     |_succ__:
     |_pred__:

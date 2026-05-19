@@ -18,13 +18,13 @@ __init__ __sala_static_initializer__:
     __entry__
     0:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       RET
        >>AFTER MAY: <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__:
     |_pred__:
@@ -43,13 +43,13 @@ __entry__ main:
     __entry__
     0:
      >>BB-IN MAY: 0 = { 1 }; <<
-     >>BB-IN MUST: 0 -> 1; <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: 0 = { 1 }; <<
-       >>BEFORE MUST: 0 -> 1; <<
+       >>BEFORE UNIQUE: <<
       RET
        >>AFTER MAY: 0 = { 1 }; <<
-       >>AFTER MUST: 0 -> 1; <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__:
     |_pred__:
@@ -70,28 +70,28 @@ writer_left:
     __entry__
     0:
      >>BB-IN MAY: 0 = { 1 }; <<
-     >>BB-IN MUST: 0 -> 1; <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: 0 = { 1 }; <<
-       >>BEFORE MUST: 0 -> 1; <<
+       >>BEFORE UNIQUE: <<
       ADDRESS 2 0
        >>AFTER MAY: 0 = { 1 }; 2 = { 0 }; <<
-       >>AFTER MUST: 0 -> 1; 2 -> 0; <<
+       >>AFTER UNIQUE: 2 -> 0; <<
        >>BEFORE MAY: 0 = { 1 }; 2 = { 0 }; <<
-       >>BEFORE MUST: 0 -> 1; 2 -> 0; <<
+       >>BEFORE UNIQUE: 2 -> 0; <<
       ADDRESS 3 1
        >>AFTER MAY: 0 = { 1 }; 2 = { 0 }; 3 = { 1 }; <<
-       >>AFTER MUST: 0 -> 1; 2 -> 0; 3 -> 1; <<
+       >>AFTER UNIQUE: 2 -> 0; 3 -> 1; <<
        >>BEFORE MAY: 0 = { 1 }; 2 = { 0 }; 3 = { 1 }; <<
-       >>BEFORE MUST: 0 -> 1; 2 -> 0; 3 -> 1; <<
+       >>BEFORE UNIQUE: 2 -> 0; 3 -> 1; <<
       STORE 2 3
        >>AFTER MAY: 0 = { 1 }; 2 = { 0 }; 3 = { 1 }; <<
-       >>AFTER MUST: 0 -> 1; 2 -> 0; 3 -> 1; <<
+       >>AFTER UNIQUE: 0 -> 1; 2 -> 0; 3 -> 1; <<
        >>BEFORE MAY: 0 = { 1 }; 2 = { 0 }; 3 = { 1 }; <<
-       >>BEFORE MUST: 0 -> 1; 2 -> 0; 3 -> 1; <<
+       >>BEFORE UNIQUE: 0 -> 1; 2 -> 0; 3 -> 1; <<
       RET
        >>AFTER MAY: 0 = { 1 }; 2 = { 0 }; 3 = { 1 }; <<
-       >>AFTER MUST: 0 -> 1; 2 -> 0; 3 -> 1; <<
+       >>AFTER UNIQUE: 0 -> 1; 2 -> 0; 3 -> 1; <<
     }
     |_succ__:
     |_pred__:
@@ -112,28 +112,28 @@ writer_right:
     __entry__
     0:
      >>BB-IN MAY: 0 = { 1 }; <<
-     >>BB-IN MUST: 0 -> 1; <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: 0 = { 1 }; <<
-       >>BEFORE MUST: 0 -> 1; <<
+       >>BEFORE UNIQUE: <<
       ADDRESS 2 0
        >>AFTER MAY: 0 = { 1 }; 2 = { 0 }; <<
-       >>AFTER MUST: 0 -> 1; 2 -> 0; <<
+       >>AFTER UNIQUE: 2 -> 0; <<
        >>BEFORE MAY: 0 = { 1 }; 2 = { 0 }; <<
-       >>BEFORE MUST: 0 -> 1; 2 -> 0; <<
+       >>BEFORE UNIQUE: 2 -> 0; <<
       ADDRESS 3 1
        >>AFTER MAY: 0 = { 1 }; 2 = { 0 }; 3 = { 1 }; <<
-       >>AFTER MUST: 0 -> 1; 2 -> 0; 3 -> 1; <<
+       >>AFTER UNIQUE: 2 -> 0; 3 -> 1; <<
        >>BEFORE MAY: 0 = { 1 }; 2 = { 0 }; 3 = { 1 }; <<
-       >>BEFORE MUST: 0 -> 1; 2 -> 0; 3 -> 1; <<
+       >>BEFORE UNIQUE: 2 -> 0; 3 -> 1; <<
       STORE 2 3
        >>AFTER MAY: 0 = { 1 }; 2 = { 0 }; 3 = { 1 }; <<
-       >>AFTER MUST: 0 -> 1; 2 -> 0; 3 -> 1; <<
+       >>AFTER UNIQUE: 0 -> 1; 2 -> 0; 3 -> 1; <<
        >>BEFORE MAY: 0 = { 1 }; 2 = { 0 }; 3 = { 1 }; <<
-       >>BEFORE MUST: 0 -> 1; 2 -> 0; 3 -> 1; <<
+       >>BEFORE UNIQUE: 0 -> 1; 2 -> 0; 3 -> 1; <<
       RET
        >>AFTER MAY: 0 = { 1 }; 2 = { 0 }; 3 = { 1 }; <<
-       >>AFTER MUST: 0 -> 1; 2 -> 0; 3 -> 1; <<
+       >>AFTER UNIQUE: 0 -> 1; 2 -> 0; 3 -> 1; <<
     }
     |_succ__:
     |_pred__:

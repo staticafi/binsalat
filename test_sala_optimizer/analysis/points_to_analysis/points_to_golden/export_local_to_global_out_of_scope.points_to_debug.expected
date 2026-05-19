@@ -17,13 +17,13 @@ __init__ __sala_static_initializer__:
     __entry__
     0:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       RET
        >>AFTER MAY: <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__:
     |_pred__:
@@ -45,28 +45,28 @@ __entry__ main:
     __entry__
     0:
      >>BB-IN MAY: 0 = { -4 }; <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: 0 = { -4 }; <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       ADDRESS 1 0
        >>AFTER MAY: 0 = { -4 }; 1 = { 0 }; <<
-       >>AFTER MUST: 1 -> 0; <<
+       >>AFTER UNIQUE: 1 -> 0; <<
        >>BEFORE MAY: 0 = { -4 }; 1 = { 0 }; <<
-       >>BEFORE MUST: 1 -> 0; <<
+       >>BEFORE UNIQUE: 1 -> 0; <<
       ADDRESS 2 3
        >>AFTER MAY: 0 = { -4 }; 1 = { 0 }; 2 = { 3 }; <<
-       >>AFTER MUST: 1 -> 0; 2 -> 3; <<
+       >>AFTER UNIQUE: 1 -> 0; 2 -> 3; <<
        >>BEFORE MAY: 0 = { -4 }; 1 = { 0 }; 2 = { 3 }; <<
-       >>BEFORE MUST: 1 -> 0; 2 -> 3; <<
+       >>BEFORE UNIQUE: 1 -> 0; 2 -> 3; <<
       STORE 1 2
        >>AFTER MAY: 0 = { 3 }; 1 = { 0 }; 2 = { 3 }; <<
-       >>AFTER MUST: 0 -> 3; 1 -> 0; 2 -> 3; <<
+       >>AFTER UNIQUE: 0 -> 3; 1 -> 0; 2 -> 3; <<
        >>BEFORE MAY: 0 = { 3 }; 1 = { 0 }; 2 = { 3 }; <<
-       >>BEFORE MUST: 0 -> 3; 1 -> 0; 2 -> 3; <<
+       >>BEFORE UNIQUE: 0 -> 3; 1 -> 0; 2 -> 3; <<
       RET
        >>AFTER MAY: 0 = { 3 }; 1 = { 0 }; 2 = { 3 }; <<
-       >>AFTER MUST: 0 -> 3; 1 -> 0; 2 -> 3; <<
+       >>AFTER UNIQUE: 0 -> 3; 1 -> 0; 2 -> 3; <<
     }
     |_succ__:
     |_pred__:

@@ -18,13 +18,13 @@ __init__ __sala_static_initializer__:
     __entry__
     0:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       RET
        >>AFTER MAY: <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__:
     |_pred__:
@@ -47,72 +47,72 @@ __entry__ main:
     __entry__
     0:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       COPY 5 0
        >>AFTER MAY: <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       BRANCH 5
        >>AFTER MAY: <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__: 1 2
     |_pred__:
 
     1:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       MALLOC 2
        >>AFTER MAY: 2 = { -8 }; <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
        >>BEFORE MAY: 2 = { -8 }; <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       MOVEPTR 3 2 0 1
        >>AFTER MAY: 2 = { -8 }; 3 = { -8, -8off }; <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
        >>BEFORE MAY: 2 = { -8 }; 3 = { -8, -8off }; <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       JUMP
        >>AFTER MAY: 2 = { -8 }; 3 = { -8, -8off }; <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__: 3
     |_pred__: 0
 
     2:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       JUMP
        >>AFTER MAY: <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__: 3
     |_pred__: 0
 
     3:
-     >>BB-IN MAY: 2 = { -8, MERGE_UNKNOWN }; 3 = { -8, -8off, MERGE_UNKNOWN }; <<
-     >>BB-IN MUST: <<
+     >>BB-IN MAY: 2 = { -8 }; 3 = { -8, -8off }; <<
+     >>BB-IN UNIQUE: <<
     {
-       >>BEFORE MAY: 2 = { -8, MERGE_UNKNOWN }; 3 = { -8, -8off, MERGE_UNKNOWN }; <<
-       >>BEFORE MUST: <<
+       >>BEFORE MAY: 2 = { -8 }; 3 = { -8, -8off }; <<
+       >>BEFORE UNIQUE: <<
       LOAD 4 3
-       >>AFTER MAY: 2 = { -8, MERGE_UNKNOWN }; 3 = { -8, -8off, MERGE_UNKNOWN }; 4 = { -8 }; <<
-       >>AFTER MUST: <<
-       >>BEFORE MAY: 2 = { -8, MERGE_UNKNOWN }; 3 = { -8, -8off, MERGE_UNKNOWN }; 4 = { -8 }; <<
-       >>BEFORE MUST: <<
+       >>AFTER MAY: 2 = { -8 }; 3 = { -8, -8off }; 4 = { -8 }; <<
+       >>AFTER UNIQUE: <<
+       >>BEFORE MAY: 2 = { -8 }; 3 = { -8, -8off }; 4 = { -8 }; <<
+       >>BEFORE UNIQUE: <<
       RET
-       >>AFTER MAY: 2 = { -8, MERGE_UNKNOWN }; 3 = { -8, -8off, MERGE_UNKNOWN }; 4 = { -8 }; <<
-       >>AFTER MUST: <<
+       >>AFTER MAY: 2 = { -8 }; 3 = { -8, -8off }; 4 = { -8 }; <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__:
     |_pred__: 2 1
