@@ -18,13 +18,13 @@ __init__ __sala_static_initializer__:
     __entry__
     0:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       RET
        >>AFTER MAY: <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__:
     |_pred__:
@@ -48,77 +48,77 @@ __entry__ main:
     __entry__
     0:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       ADDRESS 5 4
        >>AFTER MAY: 5 = { 4 }; <<
-       >>AFTER MUST: 5 -> 4; <<
+       >>AFTER UNIQUE: 5 -> 4; <<
        >>BEFORE MAY: 5 = { 4 }; <<
-       >>BEFORE MUST: 5 -> 4; <<
+       >>BEFORE UNIQUE: 5 -> 4; <<
       COPY 6 0
        >>AFTER MAY: 5 = { 4 }; <<
-       >>AFTER MUST: 5 -> 4; <<
+       >>AFTER UNIQUE: 5 -> 4; <<
        >>BEFORE MAY: 5 = { 4 }; <<
-       >>BEFORE MUST: 5 -> 4; <<
+       >>BEFORE UNIQUE: 5 -> 4; <<
       BRANCH 6
        >>AFTER MAY: 5 = { 4 }; <<
-       >>AFTER MUST: 5 -> 4; <<
+       >>AFTER UNIQUE: 5 -> 4; <<
     }
     |_succ__: 1 2
     |_pred__:
 
     1:
      >>BB-IN MAY: 5 = { 4 }; <<
-     >>BB-IN MUST: 5 -> 4; <<
+     >>BB-IN UNIQUE: 5 -> 4; <<
     {
        >>BEFORE MAY: 5 = { 4 }; <<
-       >>BEFORE MUST: 5 -> 4; <<
+       >>BEFORE UNIQUE: 5 -> 4; <<
       ADDRESS 2 4
        >>AFTER MAY: 2 = { 4 }; 5 = { 4 }; <<
-       >>AFTER MUST: 2 -> 4; 5 -> 4; <<
+       >>AFTER UNIQUE: 2 -> 4; 5 -> 4; <<
        >>BEFORE MAY: 2 = { 4 }; 5 = { 4 }; <<
-       >>BEFORE MUST: 2 -> 4; 5 -> 4; <<
+       >>BEFORE UNIQUE: 2 -> 4; 5 -> 4; <<
       MOVEPTR 3 2 0 1
        >>AFTER MAY: 2 = { 4 }; 3 = { 4, 4off }; 5 = { 4 }; <<
-       >>AFTER MUST: 2 -> 4; 5 -> 4; <<
+       >>AFTER UNIQUE: 2 -> 4; 5 -> 4; <<
        >>BEFORE MAY: 2 = { 4 }; 3 = { 4, 4off }; 5 = { 4 }; <<
-       >>BEFORE MUST: 2 -> 4; 5 -> 4; <<
+       >>BEFORE UNIQUE: 2 -> 4; 5 -> 4; <<
       JUMP
        >>AFTER MAY: 2 = { 4 }; 3 = { 4, 4off }; 5 = { 4 }; <<
-       >>AFTER MUST: 2 -> 4; 5 -> 4; <<
+       >>AFTER UNIQUE: 2 -> 4; 5 -> 4; <<
     }
     |_succ__: 3
     |_pred__: 0
 
     2:
      >>BB-IN MAY: 5 = { 4 }; <<
-     >>BB-IN MUST: 5 -> 4; <<
+     >>BB-IN UNIQUE: 5 -> 4; <<
     {
        >>BEFORE MAY: 5 = { 4 }; <<
-       >>BEFORE MUST: 5 -> 4; <<
+       >>BEFORE UNIQUE: 5 -> 4; <<
       JUMP
        >>AFTER MAY: 5 = { 4 }; <<
-       >>AFTER MUST: 5 -> 4; <<
+       >>AFTER UNIQUE: 5 -> 4; <<
     }
     |_succ__: 3
     |_pred__: 0
 
     3:
-     >>BB-IN MAY: 2 = { 4, MERGE_UNKNOWN }; 3 = { 4, 4off, MERGE_UNKNOWN }; 5 = { 4 }; <<
-     >>BB-IN MUST: 5 -> 4; <<
+     >>BB-IN MAY: 2 = { 4 }; 3 = { 4, 4off }; 5 = { 4 }; <<
+     >>BB-IN UNIQUE: 5 -> 4; <<
     {
-       >>BEFORE MAY: 2 = { 4, MERGE_UNKNOWN }; 3 = { 4, 4off, MERGE_UNKNOWN }; 5 = { 4 }; <<
-       >>BEFORE MUST: 5 -> 4; <<
+       >>BEFORE MAY: 2 = { 4 }; 3 = { 4, 4off }; 5 = { 4 }; <<
+       >>BEFORE UNIQUE: 5 -> 4; <<
       STORE 3 5
-       >>AFTER MAY: 2 = { 4, MERGE_UNKNOWN }; 3 = { 4, 4off, MERGE_UNKNOWN }; 4 = { 4 }; 5 = { 4 }; <<
-       >>AFTER MUST: 4 -> 4; 5 -> 4; <<
-       >>BEFORE MAY: 2 = { 4, MERGE_UNKNOWN }; 3 = { 4, 4off, MERGE_UNKNOWN }; 4 = { 4 }; 5 = { 4 }; <<
-       >>BEFORE MUST: 4 -> 4; 5 -> 4; <<
+       >>AFTER MAY: 2 = { 4 }; 3 = { 4, 4off }; 4 = { 4 }; 5 = { 4 }; <<
+       >>AFTER UNIQUE: 5 -> 4; <<
+       >>BEFORE MAY: 2 = { 4 }; 3 = { 4, 4off }; 4 = { 4 }; 5 = { 4 }; <<
+       >>BEFORE UNIQUE: 5 -> 4; <<
       RET
-       >>AFTER MAY: 2 = { 4, MERGE_UNKNOWN }; 3 = { 4, 4off, MERGE_UNKNOWN }; 4 = { 4 }; 5 = { 4 }; <<
-       >>AFTER MUST: 4 -> 4; 5 -> 4; <<
+       >>AFTER MAY: 2 = { 4 }; 3 = { 4, 4off }; 4 = { 4 }; 5 = { 4 }; <<
+       >>AFTER UNIQUE: 5 -> 4; <<
     }
     |_succ__:
     |_pred__: 2 1

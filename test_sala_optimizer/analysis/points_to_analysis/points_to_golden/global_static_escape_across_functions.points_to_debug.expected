@@ -17,13 +17,13 @@ __init__ __sala_static_initializer__:
     __entry__
     0:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       RET
        >>AFTER MAY: <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__:
     |_pred__:
@@ -43,23 +43,23 @@ __entry__ main:
     __entry__
     0:
      >>BB-IN MAY: 0 = { -4, 0 }; <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: 0 = { -4, 0 }; <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       ADDRESS 1 0
        >>AFTER MAY: 0 = { -4, 0 }; 1 = { 0 }; <<
-       >>AFTER MUST: 1 -> 0; <<
+       >>AFTER UNIQUE: 1 -> 0; <<
        >>BEFORE MAY: 0 = { -4, 0 }; 1 = { 0 }; <<
-       >>BEFORE MUST: 1 -> 0; <<
+       >>BEFORE UNIQUE: 1 -> 0; <<
       CALL -5=mutator 1
        >>AFTER MAY: -4 = { -4, -3, 0, 1 }; 0 = { -4, -3, 0, 1 }; 1 = { 0 }; <<
-       >>AFTER MUST: 1 -> 0; <<
+       >>AFTER UNIQUE: 1 -> 0; <<
        >>BEFORE MAY: -4 = { -4, -3, 0, 1 }; 0 = { -4, -3, 0, 1 }; 1 = { 0 }; <<
-       >>BEFORE MUST: 1 -> 0; <<
+       >>BEFORE UNIQUE: 1 -> 0; <<
       RET
        >>AFTER MAY: -4 = { -4, -3, 0, 1 }; 0 = { -4, -3, 0, 1 }; 1 = { 0 }; <<
-       >>AFTER MUST: 1 -> 0; <<
+       >>AFTER UNIQUE: 1 -> 0; <<
     }
     |_succ__:
     |_pred__:
@@ -79,13 +79,13 @@ mutator:
     __entry__
     0:
      >>BB-IN MAY: 0 = { -4, 0 }; 1 = { -3 }; <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: 0 = { -4, 0 }; 1 = { -3 }; <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       RET
        >>AFTER MAY: 0 = { -4, 0 }; 1 = { -3 }; <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__:
     |_pred__:

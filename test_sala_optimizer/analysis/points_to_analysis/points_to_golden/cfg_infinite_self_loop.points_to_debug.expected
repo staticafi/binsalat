@@ -16,13 +16,13 @@ __init__ __sala_static_initializer__:
     __entry__
     0:
      >>BB-IN MAY: <<
-     >>BB-IN MUST: <<
+     >>BB-IN UNIQUE: <<
     {
        >>BEFORE MAY: <<
-       >>BEFORE MUST: <<
+       >>BEFORE UNIQUE: <<
       RET
        >>AFTER MAY: <<
-       >>AFTER MUST: <<
+       >>AFTER UNIQUE: <<
     }
     |_succ__:
     |_pred__:
@@ -42,19 +42,19 @@ __entry__ main:
   <
     __entry__
     0:
-     >>BB-IN MAY: 0 = { 1, MERGE_UNKNOWN }; <<
-     >>BB-IN MUST: <<
+     >>BB-IN MAY: 0 = { 1 }; <<
+     >>BB-IN UNIQUE: <<
     {
-       >>BEFORE MAY: 0 = { 1, MERGE_UNKNOWN }; <<
-       >>BEFORE MUST: <<
+       >>BEFORE MAY: 0 = { 1 }; <<
+       >>BEFORE UNIQUE: <<
       ADDRESS 0 1
        >>AFTER MAY: 0 = { 1 }; <<
-       >>AFTER MUST: 0 -> 1; <<
+       >>AFTER UNIQUE: 0 -> 1; <<
        >>BEFORE MAY: 0 = { 1 }; <<
-       >>BEFORE MUST: 0 -> 1; <<
+       >>BEFORE UNIQUE: 0 -> 1; <<
       JUMP
        >>AFTER MAY: 0 = { 1 }; <<
-       >>AFTER MUST: 0 -> 1; <<
+       >>AFTER UNIQUE: 0 -> 1; <<
     }
     |_succ__: 0
     |_pred__: 0
